@@ -1,21 +1,32 @@
 # Deploy Serverless Defender as a Lambda Layer using Terraform.
 
-Description:
+**Description:**
+
 This Terraform template provides an AWS Lambda function along with a Lambda layer, configured to run Prisma Cloud Serverless Defender.
-General Information:
+
+**General Information:**
+
 Prisma Cloud Serverless Defenders protect serverless functions at runtime. Currently, Prisma Cloud supports AWS Lambda functions.
+
 Lambda layers are ZIP archives that contain libraries, custom runtimes, or other dependencies. Layers let you add reusable components to your functions, and focus deployment packages on business logic. They are extracted to the /opt directory in the function execution environment. For more information, see the AWS Lambda layers documentation.
+
 Prisma Cloud delivers Serverless Defender as a Lambda layer. Deploy Serverless Defender to your function by wrapping the handler and setting an environment variable.
-Download the Serverless Defender layer from Compute Console:
-Open Console, then go to Manage > Defenders > Deploy> Defenders > Single Defender.
+
+**Download the Serverless Defender layer from Compute Console:**
+
+Open Console, then go to **Manage > Defenders > Deploy> Defenders > Single Defender.**
 Choose the DNS name or IP address that Serverless Defender uses to connect to Console.
-Set the Defender type to Serverless Defender.
-Select a runtime.
+Set the **Defender type** to **Serverless Defender**.
+Select a **runtime**.
 Prisma Cloud supports Lambda layers for Node.js, Python, Ruby, C#, and Java. For Deployment Type, select Layer.
 Download the Serverless Defender layer. A ZIP file is downloaded to your host.
-Define your Runtime Protection Policy
+
+**Define your Runtime Protection Policy**
+
 By default, Prisma Cloud ships with an empty serverless runtime policy. An empty policy disables runtime defense entirely.
+
 You can enable runtime defense by creating a rule. By default, new rules:
+
 Apply to all functions (*), but you can target them to specific functions by function name.
 Block all processes from running except the main process. This protects against command injection attacks.
 When functions are invoked, they connect to Compute Console and retrieve the latest policy. To ensure that functions start executing at time=0 with your custom policy, you must predefine the policy. Predefined policy is embedded into your function along with the Serverless Defender by way of the TW_POLICY environment variable.
